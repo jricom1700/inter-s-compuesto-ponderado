@@ -1,0 +1,337 @@
+@import "tailwindcss";
+
+@variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    color-scheme: dark;
+    --bg-base-dark: #090d16;
+    --color-bg-mesh-1: rgba(99, 102, 241, 0.18);
+    --color-bg-mesh-2: rgba(168, 85, 247, 0.14);
+    --color-bg-mesh-3: rgba(6, 182, 212, 0.14);
+  }
+
+  .dark {
+    --bg-base-dark: #090d16;
+    --color-bg-mesh-1: rgba(99, 102, 241, 0.18);
+    --color-bg-mesh-2: rgba(168, 85, 247, 0.14);
+    --color-bg-mesh-3: rgba(6, 182, 212, 0.14);
+  }
+
+  body {
+    @apply antialiased min-h-screen text-zinc-100;
+    background-color: var(--bg-base-dark);
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11", "tnum";
+  }
+
+  .dark body {
+    background-color: var(--bg-base-dark);
+  }
+}
+
+/* Liquid Glass Core Utilities with Corner Specular Gleams */
+.liquid-glass {
+  position: relative;
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.85);
+  box-shadow: 
+    0 10px 30px -5px rgba(2, 40, 89, 0.05),
+    0 20px 25px -5px rgba(99, 102, 241, 0.04),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.95);
+}
+
+.dark .liquid-glass {
+  background: rgba(15, 20, 32, 0.65);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  box-shadow: 
+    0 10px 35px -5px rgba(0, 0, 0, 0.45),
+    0 20px 25px -5px rgba(99, 102, 241, 0.08),
+    inset 0 1px 1.5px 0 rgba(255, 255, 255, 0.14);
+}
+
+/* Liquid Glass Container Helper */
+.glass-corner-flare {
+  position: relative;
+}
+
+/* Dynamic Liquid Mouse Sheen (Reflejo líquido dinámico en la superficie según el mouse) */
+.liquid-mouse-sheen {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: var(--edge-glow-opacity, 0);
+  transition: opacity 0.22s ease-out;
+  background: radial-gradient(
+    var(--edge-glow-size, 640px) circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(255, 255, 255, 0.10) 0%,
+    rgba(255, 255, 255, 0.04) 30%,
+    transparent 65%
+  );
+  z-index: 1;
+}
+
+.dark .liquid-mouse-sheen {
+  background: radial-gradient(
+    var(--edge-glow-size, 640px) circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(255, 255, 255, 0.08) 0%,
+    rgba(255, 255, 255, 0.02) 30%,
+    transparent 65%
+  );
+}
+
+/* Dynamic Edge Glow (Bordes elegantes con brillo perlado suave y reactivo) */
+.edge-glow-border {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  padding: 2.5px;
+  opacity: var(--edge-glow-opacity, 0);
+  transition: opacity 0.22s ease-out;
+  background: radial-gradient(
+    var(--edge-glow-size, 640px) circle at var(--mouse-x, -999px) var(--mouse-y, -999px),
+    rgba(255, 255, 255, 0.7) 0%,
+    var(--edge-glow-color, rgba(255, 255, 255, 0.55)) 28%,
+    rgba(255, 255, 255, 0.15) 55%,
+    transparent 72%
+  );
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  mask-composite: exclude;
+  z-index: 10;
+  filter: drop-shadow(0 0 4px var(--edge-glow-color, rgba(255, 255, 255, 0.45)));
+}
+
+.liquid-glass-subtle {
+  background: rgba(255, 255, 255, 0.55);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.65);
+}
+
+.dark .liquid-glass-subtle {
+  background: rgba(22, 27, 44, 0.5);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.liquid-glass-input {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(190, 205, 225, 0.8);
+  box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.02);
+  transition: all 0.2s ease;
+}
+
+.dark .liquid-glass-input {
+  background: rgba(14, 18, 30, 0.7);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  box-shadow: inset 0 1px 2px 0 rgba(0, 0, 0, 0.3);
+  color: #f1f5f9;
+}
+
+.liquid-glass-input:focus {
+  border-color: #6366f1;
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.25), inset 0 1px 1px 0 rgba(255, 255, 255, 0.2);
+  outline: none;
+}
+
+/* Ambient Liquid Glowing Orbs */
+@keyframes float-slow {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(30px, -40px) scale(1.08);
+  }
+  66% {
+    transform: translate(-25px, 25px) scale(0.95);
+  }
+}
+
+@keyframes float-reverse {
+  0%, 100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+  33% {
+    transform: translate(-35px, 30px) scale(1.06);
+  }
+  66% {
+    transform: translate(25px, -30px) scale(0.96);
+  }
+}
+
+.animate-liquid-1 {
+  animation: float-slow 20s ease-in-out infinite;
+}
+
+.animate-liquid-2 {
+  animation: float-reverse 25s ease-in-out infinite;
+}
+
+.animate-liquid-3 {
+  animation: float-slow 30s ease-in-out infinite reverse;
+}
+
+/* Custom subtle scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(148, 163, 184, 0.3);
+  border-radius: 9999px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+  background: rgba(100, 116, 139, 0.35);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(148, 163, 184, 0.5);
+}
+
+/* SVG Chart Glow Stroke & Growth Animation */
+@keyframes chart-path-reveal {
+  0% {
+    stroke-dashoffset: 1800;
+    opacity: 0.1;
+  }
+  100% {
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+@keyframes chart-clip-grow {
+  0% {
+    width: 0px;
+  }
+  100% {
+    width: 820px;
+  }
+}
+
+.animate-chart-glow {
+  stroke-dasharray: 1800;
+  animation: chart-path-reveal 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-chart-grow-clip {
+  animation: chart-clip-grow 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Aggressive Liquid Modal Bubble Entrance Animations */
+@keyframes liquid-bubble-open {
+  0% {
+    opacity: 0;
+    transform: scale(0.74) translateY(42px);
+    filter: blur(14px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(1.025) translateY(-6px);
+    filter: blur(1px);
+  }
+  85% {
+    transform: scale(0.992) translateY(2px);
+    filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+    filter: blur(0px);
+  }
+}
+
+@keyframes liquid-backdrop-fade {
+  0% {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+  }
+  100% {
+    opacity: 1;
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+  }
+}
+
+@keyframes liquid-item-rise {
+  0% {
+    opacity: 0;
+    transform: translateY(18px) scale(0.98);
+    filter: blur(5px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0px);
+  }
+}
+
+.animate-liquid-modal-bubble {
+  animation: liquid-bubble-open 0.44s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform-origin: center center;
+}
+
+.animate-liquid-backdrop {
+  animation: liquid-backdrop-fade 0.35s ease-out forwards;
+}
+
+.animate-liquid-stagger-1 {
+  animation: liquid-item-rise 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+.animate-liquid-stagger-2 {
+  animation: liquid-item-rise 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.15s both;
+}
+
+.animate-liquid-stagger-3 {
+  animation: liquid-item-rise 0.42s cubic-bezier(0.16, 1, 0.3, 1) 0.22s both;
+}
+
+/* Hide scrollbar for clean horizontal pill sliders */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* Modal de gráfica a pantalla completa: rotación horizontal automática en móvil portrait */
+@media (max-width: 767px) and (orientation: portrait) {
+  .mobile-landscape-chart-modal {
+    transform: rotate(90deg);
+    transform-origin: center center;
+    width: 96vh !important;
+    height: 96vw !important;
+    max-width: 96vh !important;
+    max-height: 96vw !important;
+  }
+}
+
+/* En móvil con orientación horizontal real (landscape): ocupar toda la pantalla sin rotar */
+@media (max-height: 600px) and (orientation: landscape) {
+  .mobile-landscape-chart-modal {
+    transform: none !important;
+    width: 98vw !important;
+    height: 96vh !important;
+    max-width: 98vw !important;
+    max-height: 96vh !important;
+  }
+}

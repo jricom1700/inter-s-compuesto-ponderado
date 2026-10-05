@@ -1,0 +1,105 @@
+---
+import '../styles/global.css';
+import { CalculadoraApp } from '../components/CalculadoraApp';
+import { ShieldCheckIcon, InfoIcon } from '../components/ui/Icons';
+---
+
+<!doctype html>
+<html lang="es" class="dark scroll-smooth" style="color-scheme: dark;">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark" />
+    <meta name="theme-color" content="#090d16" />
+    <meta name="generator" content={Astro.generator} />
+
+    <!-- SEO & Metadata -->
+    <title>Calculadora de Rendimientos Multi-Fuente | Tasa Ponderada & Renta Fija</title>
+    <meta
+      name="description"
+      content="Calculadora financiera interactiva client-side para consolidar ahorros e inversiones de renta fija en múltiples entidades. Soporte para tasas escalonadas por tramos, capitalización diaria/mensual y tasa ponderada global."
+    />
+    <meta
+      name="keywords"
+      content="calculadora de rendimientos, tasa ponderada, renta fija, ahorros, inversiones, tasas escalonadas, interes compuesto, finanzas personales"
+    />
+    <meta name="author" content="Calculadora de Rendimientos" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Social -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Calculadora de Rendimientos Multi-Fuente" />
+    <meta
+      property="og:description"
+      content="Consolida tus inversiones y ahorros en múltiples entidades con soporte de tasas escalonadas y proyección temporal interactiva. 100% privado en tu navegador."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Calculadora de Rendimientos Multi-Fuente" />
+    <meta
+      name="twitter:description"
+      content="Herramienta financiera didáctica y privada para calcular tu tasa anual ponderada y rendimientos en renta fija."
+    />
+
+    <!-- Forzar siempre modo oscuro de manera irrevocable -->
+    <script is:inline>
+      document.documentElement.classList.add('dark');
+      try {
+        localStorage.setItem('theme', 'dark');
+      } catch (e) {}
+    </script>
+  </head>
+
+  <body class="selection:bg-indigo-500 selection:text-white">
+    <!-- App interactiva React -->
+    <CalculadoraApp client:load />
+
+    <!-- Pie de página con Deslinde Legal Estilo Private Banking -->
+    <footer class="max-w-7xl mx-auto px-4 pb-14 pt-4">
+      <div class="liquid-glass glass-corner-flare rounded-3xl p-6 md:p-8 border border-white/70 dark:border-white/10 shadow-lg shadow-indigo-950/5 dark:shadow-black/30">
+        <div class="flex flex-col md:flex-row items-start md:items-center justify-between gap-4 pb-4 border-b border-slate-200/60 dark:border-white/10">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-slate-100 dark:bg-white/5 text-slate-500 dark:text-zinc-400 border border-slate-200/60 dark:border-white/10 flex items-center justify-center shrink-0">
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                <path d="m9 12 2 2 4-4"></path>
+              </svg>
+            </div>
+            <div>
+              <h4 class="text-xs font-bold tracking-tight uppercase text-slate-700 dark:text-zinc-300">
+                Aviso Legal y Deslinde de Responsabilidad
+              </h4>
+              <span class="text-[11px] text-slate-500 dark:text-zinc-400">
+                Simulación matemática con fines didácticos y de planificación personal
+              </span>
+            </div>
+          </div>
+
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/10 text-emerald-700 dark:text-emerald-400 text-[11px] font-medium border border-emerald-500/20">
+            <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>100% Client-Side &bull; Cero Custodia</span>
+          </div>
+        </div>
+
+        <p class="text-xs leading-relaxed text-slate-500 dark:text-zinc-400 mt-4 text-justify sm:text-left">
+          Aviso legal y de simulación: Esta calculadora es una herramienta de estimación matemática con fines estrictamente informativos y didácticos. No constituye asesoría financiera, recomendación de inversión ni oferta de productos de captación. Los rendimientos mostrados son estimaciones antes de impuestos y no garantizan ganancias futuras. Verifica siempre las tasas, términos y condiciones vigentes directamente con tu institución financiera.
+        </p>
+
+        <div class="mt-6 pt-4 border-t border-slate-200/50 dark:border-white/5 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-400 dark:text-zinc-500 gap-2">
+          <span>Tus datos financieros residen exclusivamente en la memoria local de tu dispositivo.</span>
+          <span>Calculadora de Rendimientos &copy; {new Date().getFullYear()}</span>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>
